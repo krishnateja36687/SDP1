@@ -1,0 +1,53 @@
+<div class="col-md-3">
+  <div class="sidebar-wrap">
+    <div class="side search-wrap animate-box">
+      <h3 class="sidebar-heading">Tour Details</h3>
+      <form [formGroup]="myForm" class="colorlib-form">
+              <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="date">Start Date:</label>
+                  <div class="form-field">
+                    <i class="icon icon-calendar2"></i>
+                    <input type="date" id="date" formControlName="date" class="form-control" required placeholder="Select a Date">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="guests">Duration</label>
+                  <div class="form-field">
+                    <input name="duration" id="duration" class="form-control" placeholder="{{package.duration}} Days (fixed)" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="guests">Maximum No of Guests : {{package.maxguest}}</label>
+                  <div class="form-field">
+                    <div class="form-field">
+                      <input type="number" formControlName="guestcount" placeholder="0" id="guests" class="form-control" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="guests">Total Price</label>
+                  <div class="form-field">
+                    <div class="form-field">
+                      <input name="price" id="price" class="form-control" placeholder="{{package.price}}.00 Rs" disabled>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <button type="button" (click)="checkavailability()" name="submit" id="submit"  class="btn btn-primary btn-block">Check Availability</button>
+              </div>
+            </div>
+          </form>
+    </div>
+  </div>
+</div>

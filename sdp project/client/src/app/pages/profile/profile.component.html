@@ -1,0 +1,66 @@
+<!-- import main navigation component -->
+<app-index-main-nav isLoggedIn=true></app-index-main-nav>
+
+<!-- Destinations -->
+<aside id="colorlib-hero">
+  <div class="flexslider">
+    <ul class="slides">
+       <li style="background-image: url(../../assets/images/cover-img-5.jpg);">
+         <div class="overlay"></div>
+         <div class="container-fluid">
+           <div class="row">
+             <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
+               <div class="slider-text-inner text-center">
+                 <h2>Welcome</h2>
+                 <h1>{{currentuser.username}}</h1>
+               </div>
+             </div>
+           </div>
+         </div>
+       </li>
+      </ul>
+    </div>
+</aside>
+
+<!-- import profile body -->
+
+ <div id="colorlib-profile">
+  <div class="row">
+    <div class="search-wrap">
+      <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a data-toggle="tab" href="#flight"
+              ><i class="flaticon-plane"></i> Active Tours</a
+            >
+          </li>
+          <li>
+            <a data-toggle="tab" href="#hotel"
+              ><i class="flaticon-car"></i> Recent Tours</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div id="flight" class="tab-pane fade in active">
+          <app-my-reservations *ngIf="currentuser"></app-my-reservations>
+        </div>
+
+        <div id="hotel" class="tab-pane fade">
+          <app-edit-profile></app-edit-profile>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- import subscribe component -->
+<app-index-subscribe></app-index-subscribe>
+
+<!-- import footer component -->
+<app-footer></app-footer>
+
+<!-- import arrow-up component -->
+<app-arrow-up></app-arrow-up>

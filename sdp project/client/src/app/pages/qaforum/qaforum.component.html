@@ -1,0 +1,37 @@
+<app-index-main-nav></app-index-main-nav>
+
+<app-qaforum-header></app-qaforum-header>
+
+<div id="colorlib-contact">
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                    <a href="http://localhost:3000/auth/google"><h4 *ngIf="!currentuser && isLoggedIn!='true'">Please login to post your thoughts!</h4></a>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+            <div class="row">
+            <div class="col-md-2" >              
+                <a href="http://localhost:3000/auth/google"><button *ngIf="!currentuser && isLoggedIn!='true'" class="btn btn-primary">Ask A Question</button></a>
+                <button  *ngIf="currentuser || isLoggedIn=='true'" class="btn btn-primary" (click)="toggleOn()">Ask A Question</button>
+                
+            </div>
+        
+            <div class="col-md-8">
+                    <input type="text" (keyup)="onKey($event)" class="form-control" placeholder="Search for a question">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" (click)="search()">Go</button>
+            </div>
+        </div>
+        <app-qaforum-body *ngIf="isOn" (hideParent)="toggleOn()"></app-qaforum-body>
+        <app-question-list #filter ></app-question-list> 
+        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+             
+</div>
+<app-footer></app-footer>

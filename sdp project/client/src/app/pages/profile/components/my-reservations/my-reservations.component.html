@@ -1,0 +1,140 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="wrap-division">
+          <div class="col-md-12 col-md-offset-0 heading2 ">
+            <h2>Active Tours</h2>
+          </div>
+          <div *ngIf="activetours.length==0" class="text-center">
+            <h3>Currently you don't have active tours!</h3>
+            <a routerLink="/tours" class="btn btn-primary text-light" style="color: white">Reserve a Tour</a>
+          </div>
+          <br><br>
+          <div *ngIf="activetours.length!=0" class="row">
+            <div *ngFor="let tour of activetours" class="col-md-12">
+              <div class="room-wrap">
+                <div class="row">
+                  <div class="col-md-4 col-sm-4">
+                    <div
+                      class="room-img"
+                      [ngStyle]="{
+                        'background-image':
+                          'url(' +
+                          url +
+                          '/tourpackages/' +
+                          tour.reservation.imgurl +
+                          ')'
+                      }"
+                    ></div>
+                  </div>
+                  <div class="col-md-8 col-sm-8">
+                    <div class="desc">
+                      <h1>
+                        <a
+                          href="/tourplaces/{{ tour.reservation.packageid }}"
+                          class="head"
+                          >{{ tour.reservation.packagename }}</a
+                        >
+                      </h1>
+                      <h4 >Tour date :<span class="text-danger"><b> {{
+                          stringAsDate(tour.reservation.tourdate)
+                            | date: "dd/MM/yyyy"
+                        }}</b></span></h4>
+                      <div class="row">
+                        <div class="col-md-8 col-sm-8">
+                          <h3  *ngIf="tour.guide">
+                          Your Guide
+                          </h3> 
+                          <div *ngIf="tour.guide" class="row ">
+                            <div class="col-md-4 col-xs-4 text-left">
+                              <img
+                                class="zoom img-thumbnail"
+                                [src]="url + '/tourguides/' + tour.guide.imgurl"
+                                alt=""
+                              />
+                            </div>
+                            <div class="col-md-7 col-xs-8 text-left">
+                              <h3>{{ tour.reservation.guidename }}</h3>
+                              Contact: {{ tour.guide.phonenumber }}
+                              <br />
+                              Email: {{ tour.guide.email }}
+                              <br />
+                              Ratings: {{ tour.guide.rate }} Ratings
+                              <br />
+                              Tours Completed: {{ tour.guide.tourcount }}
+                              <br /><br />
+                            </div>
+                          </div>
+                          <div *ngIf="!tour.guide && tour.reservation.status=='active'">
+                            <h4 class="text-danger">
+                             <b> Tour Guide Not Assigned Yet.</b>
+                            </h4>
+                            <h4 class="text-danger">
+                              After we have completed the guide asssigning process,
+                              you will be notified via email.
+                            </h4>
+                          </div>
+                          <div *ngIf="tour.reservation.status=='requested'">
+                                
+                            <h4 class="text-danger">
+                                <b>Your Cancellation request is in Processing.</b> 
+                              </h4>
+                              <h4>
+                                After we have completed the refund process,
+                                you will notify via an email. <br><br>
+                                Thank you.
+                              </h4>
+                            </div>
+                          <br />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 text-left" style="padding-top:40px">
+                          <div></div>
+                          <div
+                            *ngIf="tour.reservation.status == 'active'"
+                            class="text-danger"
+                          >
+                          <h4>
+                              {{ tour.reservation.price }}.00 Rs :
+                              <span class="text-success"><b> Paid</b></span>
+                          </h4>
+                        </div>
+                          <h2
+                            *ngIf="tour.reservation.status == 'requested'"
+                            class="text-danger text-center"
+                            style="padding: 50px"
+                          >
+                           <b> Refund <br />Requested! <br><br></b>
+                          </h2>
+                          <h1
+                            *ngIf="tour.reservation.status == 'closed'"
+                            class="text-success"
+                          >
+                            <br /><br />Completed
+                          </h1>
+                          <button
+                            *ngIf="tour.reservation.status == 'closed'"
+                            class="btn btn-primary"
+                          >
+                            Edit Rate
+                          </button>
+                          <button
+                            routerLink="/profile"
+                            *ngIf="tour.reservation.status == 'active'"
+                            class="btn-sm btn-danger"  (click)="requestRefund(tour.reservation)"
+                          >
+                            Cancel Tour
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

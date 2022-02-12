@@ -1,0 +1,83 @@
+<!-- import main navigation component -->
+<app-index-main-nav></app-index-main-nav>
+
+<!-- Destinations -->
+<aside id="colorlib-hero">
+  <div class="flexslider">
+    <ul class="slides">
+      <li style="background-image: url(./assets/images/cover-img-3.jpg);">
+        <div class="overlay"></div>
+        <div class="container-fluid">
+          <div class="row">
+            <div
+              class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text"
+            >
+              <div class="slider-text-inner text-center">
+                <h2>by ecoTravels.com</h2>
+                <h1>Tour Overview</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</aside>
+
+<div class="colorlib-wrap">
+  <div class="container">
+      <div class="container" style="margin-top:-80px;margin-bottom: 50px"> <b><a routerLink="/">Home </a> / <a routerLink="/tours">Tours </a> / TourPlaces</b></div> 
+    <div class="row">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="wrap-division">
+              <div class="col-md-12 col-md-offset-0 heading2 ">
+                <h2>{{ package.package | titlecase }}</h2>
+              </div>
+              <div class="row">
+                <div class="col-md-12 ">
+                  <div class="room-wrap">
+                    <div class="row">
+                      <div class="col-md-6 col-sm-6">
+                        <div
+                          class="room-img"
+                          [ngStyle]="{
+                            'background-image':
+                              'url('+uri+'/tourpackages/' +
+                              package.coverimage +
+                              ')'
+                          }"
+                        ></div>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <div class="desc">
+                          <span class="day-tour">Tour Description</span>
+                          <h2>{{ package.location }}</h2>
+                          <p>{{ package.description }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 animate-box text-center"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--import tour-places SIDEBAR-->
+      <app-tour-places-sidebar [package]="package"></app-tour-places-sidebar>
+    </div>
+  </div>
+</div>
+
+<!-- import subscribe component -->
+<app-index-subscribe></app-index-subscribe>
+
+<!-- import footer component -->
+<app-footer></app-footer>
+
+<!-- import arrow-up component -->
+<app-arrow-up></app-arrow-up>
